@@ -1,12 +1,12 @@
-import uvicorn
-from fastapi import FastAPI
 import os
-from fastapi_sqlalchemy import DBSessionMiddleware
-from fastapi_sqlalchemy import db
+
+import uvicorn
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from fastapi_sqlalchemy import DBSessionMiddleware, db
+
 from models import User as ModelUser
 from schema import User as SchemaUser
-from dotenv import load_dotenv
-
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
