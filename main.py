@@ -17,9 +17,11 @@ app.add_middleware(DBSessionMiddleware, db_url=os.environ["DATABASE_URL"])
 
 
 @app.post("/user/", response_model=SchemaUser)
-def create_user(user: SchemaUser):
+def create_user(user: SchemaUser) -> ModelUser:
     db_user = ModelUser(
-        first_name=user.first_name, last_name=user.last_name, age=user.age
+        first_name=user.first_name,
+        last_name=user.last_name,
+        age=user.age,
     )
     db.session.add(db_user)
     db.session.commit()
@@ -27,4 +29,4 @@ def create_user(user: SchemaUser):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # noqa: S104, WPS432

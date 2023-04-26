@@ -10,8 +10,10 @@ format:
 mypy: format
 	poetry run mypy .
 
-lint: mypy
+flake: mypy
 	poetry run flake8 .
+
+lint: format mypy flake
 
 package:
 	poetry check
